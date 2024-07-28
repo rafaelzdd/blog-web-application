@@ -1,0 +1,27 @@
+{
+  "name": "blog-web-application",
+  "version": "1.0.0",
+  "description": "A blog web built with node.js, express.js and EJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelzdd/blog-web-application.git"
+  },
+  "keywords": [
+    "nodejs",
+    "ejs",
+    "express.js",
+    "blog",
+    "web",
+    "application"
+  ],
+  "author": "rafaelzdd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelzdd/blog-web-application/issues"
+  },
+  "homepage": "https://github.com/rafaelzdd/blog-web-application#readme"
+}
