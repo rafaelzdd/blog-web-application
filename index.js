@@ -1,10 +1,8 @@
 import express from "express";
 import ejs from "ejs";
 import bodyParser from "body-parser";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import { posts, addPost, deletePost, getPost, updatePost } from './posts';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
