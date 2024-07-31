@@ -1,42 +1,36 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { posts, addPost, deletePost, getPost, updatePost } from "./posts.js";
+import session from "express-session";
+import path from "path";
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import ejs from 'ejs';
+import { getPosts, getPost, createPost, updatePost, deletePost } from "./posts.js";
 
 const app = express();
-const port = 3000;
+const porta = 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Sets EJS as visualization engine
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
-// Body parser reqs middleware
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("./public"));
 
-// Points static files
-app.use(express.static("public"));
+app.use(session({
+  secret: '111111',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
-// Injects layout middleware
-app.use((req, res, next) => {
-  res.locals.layout = "layout.ejs";
-  next();
-});
-
-// Main route
+// Rotas
 app.get("/", (req, res) => {
-    res.render("index.ejs", { title: "Home", posts });
-  });
-
-// Shows new post form route
-app.get("/new-post", (req, res) => {
-  res.render("new-post.ejs", { title: "New Post" });
+  const posts = getPosts();
+  res.render("index", { title: "Home", posts });
 });
 
-// Creates a new post route
-app.post("/new-post", (req, res) => {
-  addPost(req.body.title, req.body.content);
-  res.redirect('/');
-});
-
-// Visualizes a post route
 app.get("/post/:id", (req, res) => {
   const post = getPost(req.params.id);
   if (post) {
@@ -46,28 +40,34 @@ app.get("/post/:id", (req, res) => {
   }
 });
 
-// Shows edit form post route
-app.get("post/:id/edit", (req, res) => {
+app.get("/new-post", (req, res) => {
+  res.render("new-post", { title: "New Post" });
+});
+
+app.post("/post", (req, res) => {
+  createPost(req.body.title, req.body.content);
+  res.redirect("/");
+});
+
+app.get("/post/:id/edit", (req, res) => {
   const post = getPost(req.params.id);
   if (post) {
-    res.render("edit-post.ejs", { title: "Edit Post", post });
+    res.render("edit-post", { title: "Edit Post", post });
   } else {
     res.status(404).send("Post not found");
   }
 });
 
-// Edits a specific post route
-app.post("/post/:id/edit", (req, res) => {
+app.post("/post/:id", (req, res) => {
   updatePost(req.params.id, req.body.title, req.body.content);
-  res.redirect('/');
+  res.redirect("/");
 });
 
-// Deletes a specific post route
 app.post("/post/:id/delete", (req, res) => {
   deletePost(req.params.id);
-  res.redirect('/');
+  res.redirect("/");
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.listen(porta, () => {
+  console.log(`Listening on port ${porta}`);
 });
