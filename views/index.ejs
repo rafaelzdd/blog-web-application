@@ -1,0 +1,13 @@
+<%- include("layout.ejs", { title: "Home" }) %>
+<main>
+    <% posts.forEach(post => { %>
+        <article>
+            <h2><a href="/post/<%= post.id %>"><%= post.title %></a></h2>
+            <p><%= post.content %></p>
+            <a href="/post/<%= post.id %>/edit">Edit</a>
+            <form action="/post/<%= post.id %>/delete" method="POST" style="display: inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </article>
+        <% }) %>
+</main>
