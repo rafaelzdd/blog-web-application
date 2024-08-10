@@ -20,3 +20,7 @@ export function updatePost(id, title, content) {
         post.content = content;
     }
 }
+
+export function deletePost(id) {
+    posts = posts.filter(post => post.id !== parseInt(id));
+}

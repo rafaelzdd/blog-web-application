@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { getPosts, getPost, createPost, updatePost } from "./posts.js";
+import { getPosts, getPost, createPost, updatePost, deletePost } from "./posts.js";
 
 const app = express();
 const port = 3000;
@@ -45,6 +45,11 @@ app.get("/post/:id/edit", (req, res) => {
 
 app.post("/post/:id", (req, res) => {
   updatePost(req.params.id, req.body.title, req.body.content);
+  res.redirect("/");
+});
+
+app.post("/post/:id/delete", (req, res) => {
+  deletePost(req.params.id);
   res.redirect("/");
 });
 
