@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { getPosts } from "./posts.js";
+import { getPosts, getPost } from "./posts.js";
 
 const app = express();
 const port = 3000;
@@ -19,6 +19,17 @@ app.get("/", (req, res) => {
 app.get("/new-post", (req, res) => {
   res.render("new-post.ejs", { title: "New post" });
 });
+
+app.get("/post/:id", (req, res) => {
+  const post = getPost(req.params.id);
+  if(post) {
+    res.render("view-post.ejs", { title: post.title, post });
+  } else {
+    res.status(404).send("Post not found");
+  }
+});
+
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
