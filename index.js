@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { getPosts, getPost } from "./posts.js";
+import { getPosts, getPost, createPost } from "./posts.js";
 
 const app = express();
 const port = 3000;
@@ -29,7 +29,10 @@ app.get("/post/:id", (req, res) => {
   }
 });
 
-
+app.post("/post", (req, res) => {
+ createPost(req.body.title, req.body.content);
+ res.redirect("/");
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
