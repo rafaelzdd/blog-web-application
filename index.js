@@ -8,7 +8,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("./public"));
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", { title: "Home Page" });
+});
+
+app.get("/new-post", (req, res) => {
+  res.render("new-post.ejs", { title: "New post" });
 });
 
 app.listen(port, () => {
