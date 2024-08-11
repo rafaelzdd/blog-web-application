@@ -1,0 +1,112 @@
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F9FA;
+    color: #343A40;
+    line-height: 1.6;
+}
+
+main {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+article {
+    border-bottom: 1px solid #E9ECEF;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+article h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: #007BFF;
+}
+
+article p {
+    font-size: 1rem;
+    color: #495057;
+}
+
+form {
+    margin-top: 1rem;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #495057;
+}
+
+form input[type="text"], form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+    background-color: #E9ECEF;
+    font-size: 1rem;
+}
+
+form input[type="text"]:focus, form textarea:focus {
+    outline: none;
+    border-color: #007BFF;
+    background-color: #FFFFFF;
+}
+
+form button {
+    padding: 0.75rem 1.5rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056B3;
+}
+
+a.btn, button.btn {
+    padding: 0.5rem 1rem;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+a.btn:hover, button.btn:hover {
+    background-color: #0056B3;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1.5rem;
+    }
+
+    article h2 {
+        font-size: 1.5rem;
+    }
+
+    form button {
+        width: 100%;
+    }
+}
